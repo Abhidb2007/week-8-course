@@ -1,16 +1,17 @@
-function createUserRoutes(app){
-    app.post("/course/purchase", function(req,res){
+const { Router } = require("router");
+const courseRouter = Router();
+    CourseRouter.post("/course/purchase", function(req,res){
         res.json({
             message: " "
         })
     })
 
-    app.post("/course/preview", function(req,res){
+    CourseRouter.post("/course/preview", function(req,res){
         res.json({
             message: " "
         })
     })
-}
+
 
 module.exports = {
     createUserRoutes = createUserRoutes
