@@ -19,7 +19,7 @@ app.get("/",function(req, res){
 
 app.get("/",function(req, res){
      res.json({
-        message: ""
+        message: " signup endpoint"
     })
 })
 
