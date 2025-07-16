@@ -3,7 +3,7 @@ const app = express();
 
 app.post("/",function(req, res){
     res.json({
-        message: ""
+        message: "sign up"
     })
 })
 app.post("/", function(req, res){
