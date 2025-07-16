@@ -8,7 +8,7 @@ app.post("/",function(req, res){
 })
 app.post("/", function(req, res){
     res.json({
-        message: ""
+        message: "sign up"
     })
 })
 app.get("/",function(req, res){
