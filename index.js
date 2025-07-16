@@ -25,7 +25,7 @@ app.get("/",function(req, res){
 
 pp.get("/",function(req, res){
      res.json({
-        message: ""
+        message: " signup endpoint"
     })
 })
 
