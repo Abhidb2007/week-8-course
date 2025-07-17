@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const {Schema,default: mongoose} = require("mongoose");
+console.log("connected to")
+mongoose.connect("mongodb+srv://adb49278:rl12fP92ud2KMkNU@cluster0.d9wdxfi.mongodb.net/") 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
-mongoose.connect("mongodb+srv://adb49278:rl12fP92ud2KMkNU@cluster0.d9wdxfi.mongodb.net/") 
-const userSchema = Schema({
+
+const userSchema = new Schema({
     email: {type: String,unique: true},
     password: String,
     firstname: String,
@@ -12,7 +13,7 @@ const userSchema = Schema({
 });
 
 
-const adminSchema = Schema({
+const adminSchema = new Schema({
     email: {type: String,unique: true},
     password: String,
     firstname: String,
@@ -20,7 +21,7 @@ const adminSchema = Schema({
 
 });
 
-const courseSchema = Schema({
+const courseSchema = new Schema({
     description : String,
     title: String,
     imageurl: String,
@@ -29,7 +30,7 @@ const courseSchema = Schema({
 
 });
 
-const purchaseSchema = Schema({
+const purchaseSchema = new Schema({
     userId: ObjectId,
     courseId: ObjectId
 
