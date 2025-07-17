@@ -12,19 +12,21 @@ adminRouter.post("/signin", function (req, res) {
     message: "Signup endpoint",
   });
 });
-adminRouter.get("/course", function (req, res) {
+
+// /api/v1/course/
+adminRouter.get("/", function (req, res) {
   res.json({
     message: "signup endpoint",
   });
 }); 
 
-adminRouter.put("/course", function (req, res) {
+adminRouter.put("/", function (req, res) {
   res.json({
     message: "signup endpoint",
   });
 }); 
 
-adminRouter.get("/course/bulk", function (req, res) {
+adminRouter.get("/bulk", function (req, res) {
   res.json({
     message: "signup endpoint",
   });
