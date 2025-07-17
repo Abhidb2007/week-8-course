@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const { userRouter } = require("./routes/user");
 const { courseRouter } = require("./routes/course");
 const { adminRouter } = require("./routes/admin"); // match export name
@@ -14,3 +15,4 @@ app.use("/api/v1/course", courseRouter); // no error now
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
+await mongoose.connect("mongodb+srv://adb49278:rl12fP92ud2KMkNU@cluster0.d9wdxfi.mongodb.net/") 
