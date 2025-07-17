@@ -12,7 +12,9 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/course", courseRouter); // no error now
 
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
-});
-await mongoose.connect("mongodb+srv://adb49278:rl12fP92ud2KMkNU@cluster0.d9wdxfi.mongodb.net/") 
+
+async function main() {
+   await mongoose.connect("mongodb+srv://adb49278:rl12fP92ud2KMkNU@cluster0.d9wdxfi.mongodb.net/") 
+   app.listen(3000);
+   console.log("listening on port 3000")
+}   
