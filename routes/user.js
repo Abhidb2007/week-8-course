@@ -4,6 +4,9 @@ const userRouter = Router();
 
 userRouter.post("/signup", async function (req, res) {
   const { email, password, firstname, lastname} = req.body;
+  //TODO: adding zod validation
+  //TODO: hash the password so plaintext pw is not stored in the DB
+  //TODO: put inside a try catch block
   await userModel.create({
     email: email,
     password: password,
