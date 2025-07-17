@@ -18,7 +18,7 @@ adminRouter.get("/course", function (req, res) {
   });
 }); 
 
-adminRouter.get("/course", function (req, res) {
+adminRouter.put("/course", function (req, res) {
   res.json({
     message: "signup endpoint",
   });
