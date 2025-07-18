@@ -17,10 +17,11 @@ app.use("/api/v1/course", courseRouter); // no error now
 // Main async function to connect DB and start server
 async function main() {
   try {
-    await mongoose.connected("mongodb+srv://adb49278:<db_password>@cluster0.d9wdxfi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"), {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect("mongodb+srv://adb49278:8HUN6wKPMdNfRq2P@cluster0.d9wdxfi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
     console.log("✅ Connected to MongoDB");
 
     app.listen(3000, () => {
