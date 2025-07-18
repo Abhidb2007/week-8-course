@@ -17,7 +17,7 @@ app.use("/api/v1/course", courseRouter); // no error now
 // Main async function to connect DB and start server
 async function main() {
   try {
-    await mongoose.connect("mongodb+srv://abhi123:pass123@cluster0.mongodb.net/mydb?retryWrites=true&w=majority", {
+    await mongoose.connected("mongodb+srv://adb49278:<db_password>@cluster0.d9wdxfi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
