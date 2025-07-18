@@ -1,12 +1,13 @@
 const { Router } = require("express");
 const adminRouter = Router();
 const { adminModel } = require("./db");
+const JWT_ADMIN_PASSWORD = "ASD213"
 
 
 // Admin signup
 adminRouter.post("/signup", async function (req, res) {
   const { email, password, firstname, lastname } = req.body;
-  await userModel.create({
+  await adminModel.create({
         email,
         password: hashedPassword,
         firstname,
@@ -19,17 +20,17 @@ adminRouter.post("/signup", async function (req, res) {
 })
 
 // Admin signin
-adminRouter.post("/signin", function (req, res) {
+adminRouter.post("/signin", async function (req, res) {
     const{email, password} = req.body;
     // TODO: ideally password should be hashed, and hence you compare the user provided password and the database password
-    const admin = await userModel.findOne({
+    const admin = await adminModel.findOne({
       password: password,
       email: email
     })
-    if(user){
+    if(admin){
       const token: Jwt.sign({
         id: admin._id
-      },JWT_ADMIN_PASSWORD);
+      },JWT_USER_PASSWORD);
       res.json({
         token: token
       })
