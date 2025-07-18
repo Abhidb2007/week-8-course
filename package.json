@@ -18,8 +18,11 @@
   "homepage": "https://github.com/Abhidb2007/week-8-course#readme",
   "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.16.3"
+    "mongoose": "^8.16.4",
+    "zod": "^4.0.5"
   }
 }

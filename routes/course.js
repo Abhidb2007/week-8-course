@@ -1,18 +1,20 @@
 const { Router } = require("express");
 const courseRouter = Router();
 
+// 📦 Purchase a course
 courseRouter.post("/purchase", function (req, res) {
   res.json({
-    message: "Purchase endpoint",
+    message: "Course purchased successfully",
   });
 });
 
+// 👀 Preview a course
 courseRouter.get("/preview", function (req, res) {
   res.json({
-    message: "Preview endpoint",
+    message: "Course preview data",
   });
 });
 
 module.exports = {
-  courseRouter, // 👈 use this if you're importing with lowercase in index.js
+  courseRouter,
 };
