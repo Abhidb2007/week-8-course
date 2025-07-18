@@ -4,7 +4,7 @@ const { adminModel } = require("./db");
 
 
 // Admin signup
-adminRouter.post("/signup", function (req, res) {
+adminRouter.post("/signup", async function (req, res) {
   const { email, password, firstname, lastname } = req.body;
   await userModel.create({
         email,
