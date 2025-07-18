@@ -44,10 +44,21 @@ adminRouter.post("/signin", async function (req, res) {
 
 // Get all courses created by admin
 adminRouter.get("/", function (req, res) {
+  const adminId = courseId;
+  const {title,discription,price,imageUrl} = req.body;
+  const course = await userModel.create({
+    title,
+    description,
+    price,
+    imageUrl,
+    creatorId,
+  })
+
   res.json({
-    message: "List all courses created by admin",
-  });
-});
+    message: "course created",
+    courseId: course._id
+  })
+})
 
 // Update a course (You should ideally use /:courseId)
 adminRouter.put("/", function (req, res) {
