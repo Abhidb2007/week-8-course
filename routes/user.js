@@ -53,10 +53,20 @@ userRouter.post("/signin", async function (req, res) {
     password: password,
     email: email
   })
+  if(user){
+    const token: Jwt.sign({
+      id: user._id
+    },JWT_USER_PASSWORD);
+    res.json({
+      token: token
+    })
+  }else{
+    res.status(403).json{
+      message: "Incorrect crediantials"
+    }
+  }
 
-  res.json({
-    message: "Signin endpoint",
-  });
+  
 });
 
 userRouter.get("/purchases", function (req, res) {
