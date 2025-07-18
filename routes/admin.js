@@ -20,17 +20,16 @@ adminRouter.post("/signup", async function (req, res) {
 
 // Admin signin
 adminRouter.post("/signin", function (req, res) {
-  userRouter.post("/signin", async function (req, res) {
     const{email, password} = req.body;
     // TODO: ideally password should be hashed, and hence you compare the user provided password and the database password
-    const user = await userModel.findOne({
+    const admin = await userModel.findOne({
       password: password,
       email: email
     })
     if(user){
       const token: Jwt.sign({
-        id: user._id
-      },JWT_USER_PASSWORD);
+        id: admin._id
+      },JWT_ADMIN_PASSWORD);
       res.json({
         token: token
       })
@@ -39,7 +38,7 @@ adminRouter.post("/signin", function (req, res) {
         message: "Incorrect crediantials"
       }
     }
-});
+})
 
 // Get all courses created by admin
 adminRouter.get("/", function (req, res) {
