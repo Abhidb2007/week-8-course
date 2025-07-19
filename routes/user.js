@@ -57,7 +57,7 @@ userRouter.post("/signin", async function (req, res) {
   })
   if(user){
     const token: Jwt.sign({
-      id: user._id
+      id: user._id, email: user.email
     },JWT_USER_PASSWORD);
     res.json({
       token: token
