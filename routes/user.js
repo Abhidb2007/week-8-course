@@ -1,13 +1,13 @@
 const { Router } = require("express");
 const { userModel } = require("./db");
-const jwt = require("jsonwebtoken")
-const JWT_USER_PASSWORD = "abhi@123"
+const jwt = require("jsonwebtoken");
+const JWT_USER_PASSWORD = "abhi@123";
 const bcrypt = require("bcrypt");
 const { z } = require("zod");
 
 const userRouter = Router();
 
-// Zod schema for signup input validation
+// ✅ Zod schema for signup input validation
 const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
@@ -15,8 +15,8 @@ const signupSchema = z.object({
   lastname: z.string().min(1),
 });
 
+// ✅ Signup Route
 userRouter.post("/signup", async function (req, res) {
-  // ✅ Validate input using Zod
   const parsed = signupSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: parsed.error.issues });
@@ -36,10 +36,7 @@ userRouter.post("/signup", async function (req, res) {
       lastname,
     });
 
-    res.json({
-      message: "Signup successfully",
-    });
-
+    res.json({ message: "Signup successfully" });
   } catch (err) {
     res.status(500).json({
       error: "Something went wrong",
@@ -48,29 +45,41 @@ userRouter.post("/signup", async function (req, res) {
   }
 });
 
+// ✅ Signin Route
 userRouter.post("/signin", async function (req, res) {
-  const{email, password} = req.body;
-  // TODO: ideally password should be hashed, and hence you compare the user provided password and the database password
-  const user = await userModel.findOne({
-    password: password,
-    email: email
-  })
-  if(user){
-    const token: Jwt.sign({
-      id: user._id, email: user.email
-    },JWT_USER_PASSWORD);
-    res.json({
-      token: token
-    })
-  }else{
-    res.status(403).json{
-      message: "Incorrect crediantials"
-    }
-  }
+  const { email, password } = req.body;
 
-  
+  try {
+    // ✅ Find user by email
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.status(403).json({ message: "Incorrect credentials" });
+    }
+
+    // ✅ Compare hashed passwords
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(403).json({ message: "Incorrect credentials" });
+    }
+
+    // ✅ Create JWT token
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      JWT_USER_PASSWORD
+    );
+
+    res.json({ token });
+  } catch (err) {
+    res.status(500).json({
+      error: "Something went wrong",
+      details: err.message,
+    });
+  }
 });
 
+// ✅ Dummy Purchases Route
 userRouter.get("/purchases", function (req, res) {
   res.json({
     message: "Purchases endpoint",
