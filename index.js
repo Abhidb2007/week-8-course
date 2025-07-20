@@ -4,4 +4,5 @@ const cors = require("cors");
 const jwt = ("jsonwebtoken");
 const app = express();
 app.use = (express.json());
-app.use(cores();)
+app.use(cors());
+const SECRET = "secret";
