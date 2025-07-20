@@ -50,6 +50,16 @@ app.post("/signup",async(req, res){
   const token = jwt.sign({username,role: "admin"}, SECRET);
   res.json(token);
 })
+
+app.post("admin/login", async(req, res){
+  const admin = await admin.findOne(req.body);
+  if(!admin)return res.sendStatus(403){
+    const token = jwt.sign({username:admin.username,role:"admin"},SECRET);
+    res.json({token});
+  }
+});
+
+
 app.post("signin" ,async(req, res){
   const course = await course.create(req.body);
   res.json({courseId: course._id});
