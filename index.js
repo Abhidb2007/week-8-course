@@ -8,5 +8,7 @@ app.use(cors());
 const SECRET = "secret";
 //middleware Models
 const userSchema = new mongoose.Schema({
+  username: String,
+
 })
 
