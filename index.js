@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema({
   purchasedCourse: ({type:monggose.Schema.Type.ObjectId,ref: "course"})
 
 
-})
+});
+const User = mongoose.model("user",userSchema);
+
 
 
