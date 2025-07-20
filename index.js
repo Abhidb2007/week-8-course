@@ -6,3 +6,7 @@ const app = express();
 app.use = (express.json());
 app.use(cors());
 const SECRET = "secret";
+//middleware Models
+const userSchema = new mongoose.Schema({
+})
+
