@@ -3,3 +3,4 @@ const mongoose =  require("mongoose");
 const cors = require("cors");
 const jwt = ("jsonwebtoken");
 const app = express();
+app.use = (express.json());
