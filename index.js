@@ -84,7 +84,9 @@ app.post("/user/login", async(req, res){
   const token = jwt.sign({username:user.username,role: "user"},SECRET);
   res.json({token});
 })
- app
+app.get("/user/courses", auth("user"), async (req, res) => {
+  res.json({ courses: await Course.find({ published: true }) });
+})
 
 
 
