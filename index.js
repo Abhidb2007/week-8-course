@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
 
 });
 const User = mongoose.model("user",userSchema);
+ const adminSchema = new mongoose.Schema({
+  username: String,
+  password: password,
 
+ });
+const admin = mongoose.model("admin",adminSchema);
 
 
