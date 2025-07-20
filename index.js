@@ -51,7 +51,7 @@ app.post("/signup",async(req, res){
   res.json(token);
 })
 
-app.post("admin/login", async(req, res){
+app.post("/admin/login", async(req, res){
   const admin = await admin.findOne(req.body);
   if(!admin)return res.sendStatus(403){
     const token = jwt.sign({username:admin.username,role:"admin"},SECRET);
@@ -60,9 +60,13 @@ app.post("admin/login", async(req, res){
 });
 
 
-app.post("signin" ,async(req, res){
+app.post("/admin/courses" ,auth("admin"),async(req, res){
   const course = await course.create(req.body);
   res.json({courseId: course._id});
 
 });
+app.post("/admin/courses" ,auth("admin"),async(req, res){
+  res.json({ courses: await Course.find({})});
+});  
+
 
