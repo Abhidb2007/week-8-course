@@ -29,5 +29,16 @@ const courseSchema = new mongoose.Schema({
 });
 const Course = mongoose.model("course",courseSchema);
 //middleware
+function auth(role){
+  return(req, res, next){
+    const token = req.headers.authorization?.split(" ")[1];
+    if(!token)return res.sendStatus(401);
+    jwt.verify(token,SECRET,(err, user){
+      if(err||user.role!==role) return res.sendStatus(403);
+      req.user = user;next();
 
+    });
+  };
+
+}
 
