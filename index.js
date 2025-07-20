@@ -42,3 +42,12 @@ function auth(role){
 
 }
 
+// Admin Routes
+app.post("/signup",async function(req, res){
+  const{ username, password} = req.body;
+  if(await admin.findOne({username})) return res.send("Admin exists");
+  await admin.create({username,password});
+  const token = jwt.sign({username,role: "admin"}, SECRET);
+  res.json(token);
+})
+
