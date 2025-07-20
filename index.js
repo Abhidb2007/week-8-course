@@ -22,5 +22,12 @@ const User = mongoose.model("user",userSchema);
 
  });
 const admin = mongoose.model("admin",adminSchema);
+const courseSchema = new mongoose.Schema({
+  title: String,
+  price: Number,
+  description: String,
+});
+const Course = mongoose.model("course",courseSchema);
+//middleware
 
 
