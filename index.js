@@ -93,5 +93,14 @@ app.post("/user/course/:id",auth(user),async(req,res){
   await user.save();
   res.send("purchased");
 })
+app.get("/user/purchased", auth("user"), async (req, res) => {
+  const user = await User.findOne({ username: req.user.username }).populate("purchasedCourses");
+  res.json({ purchasedCourses: user.purchasedCourses });
+});
+
+// Start Server
+mongoose.connect("mongodb://127.0.0.1:27017/course-app").then(() => {
+  app.listen(3000, () => console.log("Server running at http://localhost:3000"));
+});
 
 
