@@ -78,7 +78,11 @@ app.post("user/signin",async(req, res){
   res.json({token});
 
 })
-
+app.post("/user/login", async(req, res{
+  const user = await User.findOne(req.body);
+  if(!user) return res.sendStatus(403);
+  
+})
 
 
 
