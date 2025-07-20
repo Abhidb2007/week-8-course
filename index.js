@@ -87,6 +87,11 @@ app.post("/user/login", async(req, res){
 app.get("/user/courses", auth("user"), async (req, res) => {
   res.json({ courses: await Course.find({ published: true }) });
 })
-
+app.post("/user/course/:id",auth(user),async(req,res){
+  const course = await course.findById(req.params.id),
+  const user = await user. findOne({username: req.user.username});
+  await user.save();
+  res.send("purchased");
+})
 
 
