@@ -69,4 +69,16 @@ app.post("/admin/courses" ,auth("admin"),async(req, res){
   res.json({ courses: await Course.find({})});
 });  
 
+// User Routes
+app.post("user/signin",async(req, res){
+  const {username,password} = req.body;
+  if(await User.findOne({username})) return res.send("user exist");
+  await User.create({username,password})
+  const token =jwt.sign({username,role:"user"},SECRET);
+  res.json({token});
+
+})
+
+
+
 
